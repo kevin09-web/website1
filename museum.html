@@ -1,0 +1,2662 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Museum Bali – Melestarikan Warisan Budaya Nusantara</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #C9963A;
+    --gold-light: #F5D28A;
+    --gold-pale: #FDF5E0;
+    --dark: #1A1209;
+    --dark2: #2C1F0A;
+    --brown: #5C3D1E;
+    --cream: #FBF6EE;
+    --white: #FFFFFF;
+    --text: #2C1F0A;
+    --text-muted: #7A6248;
+    --border: rgba(201,150,58,0.2);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--text);
+    overflow-x: hidden;
+  }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 5%;
+    height: 70px;
+    background: rgba(26,18,9,0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(201,150,58,0.15);
+  }
+
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+  }
+
+  .nav-logo-icon {
+    width: 36px;
+    height: 36px;
+    background: var(--gold);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+  }
+
+  .nav-logo-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    color: var(--white);
+    letter-spacing: 0.5px;
+  }
+
+  .nav-logo-text span { color: var(--gold); }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    text-decoration: none;
+    color: rgba(255,255,255,0.75);
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--gold); }
+
+  .btn-ticket {
+    background: var(--gold);
+    color: var(--dark);
+    padding: 10px 22px;
+    border-radius: 30px;
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.2s;
+    border: none;
+    cursor: pointer;
+    display: inline-block;
+    white-space: nowrap;
+  }
+
+  .btn-ticket:hover { background: var(--gold-light); transform: translateY(-1px); }
+
+  /* ─── HERO ─── */
+  #beranda {
+    height: 100vh;
+    min-height: 600px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    padding: 0 5%;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, #1A1209 0%, #3B2412 50%, #1A1209 100%);
+  }
+
+  .hero-pattern {
+    position: absolute;
+    inset: 0;
+    opacity: 0.06;
+    background-image: repeating-linear-gradient(
+      45deg,
+      var(--gold) 0, var(--gold) 1px,
+      transparent 0, transparent 50%
+    );
+    background-size: 20px 20px;
+  }
+
+  .hero-img-overlay {
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 55%;
+    background: url('https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Museum_Bali_Denpasar.jpg/1280px-Museum_Bali_Denpasar.jpg') center/cover no-repeat;
+    mask-image: linear-gradient(to right, transparent 0%, rgba(0,0,0,0.3) 20%, rgba(0,0,0,0.9) 60%, rgba(0,0,0,0.9) 100%);
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, rgba(0,0,0,0.3) 20%, rgba(0,0,0,0.9) 60%, rgba(0,0,0,0.9) 100%);
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 560px;
+  }
+
+  .hero-badge {
+    display: inline-block;
+    background: rgba(201,150,58,0.15);
+    border: 1px solid rgba(201,150,58,0.4);
+    color: var(--gold-light);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 6px 16px;
+    border-radius: 30px;
+    margin-bottom: 20px;
+  }
+
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(40px, 6vw, 72px);
+    font-weight: 900;
+    color: var(--white);
+    line-height: 1.1;
+    margin-bottom: 18px;
+  }
+
+  .hero-title span { color: var(--gold); }
+
+  .hero-desc {
+    font-size: 16px;
+    color: rgba(255,255,255,0.7);
+    line-height: 1.7;
+    margin-bottom: 32px;
+    max-width: 440px;
+  }
+
+  .hero-btns {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+
+  .btn-outline {
+    background: transparent;
+    color: var(--white);
+    padding: 12px 26px;
+    border-radius: 30px;
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    border: 1px solid rgba(255,255,255,0.35);
+    transition: all 0.2s;
+    cursor: pointer;
+  }
+
+  .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+
+  .hero-stats {
+    position: absolute;
+    bottom: 40px;
+    left: 5%;
+    right: 5%;
+    display: flex;
+    gap: 32px;
+  }
+
+  .hero-stat {
+    color: rgba(255,255,255,0.65);
+    font-size: 13px;
+  }
+
+  .hero-stat strong {
+    display: block;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--gold);
+    font-family: 'Playfair Display', serif;
+  }
+
+  /* ─── SECTIONS ─── */
+  section { scroll-margin-top: 70px; }
+
+  .section-label {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: var(--gold);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+
+  .section-label::before, .section-label::after {
+    content: '';
+    width: 30px;
+    height: 1px;
+    background: var(--gold);
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(28px, 4vw, 44px);
+    font-weight: 700;
+    color: var(--text);
+    line-height: 1.2;
+    margin-bottom: 16px;
+  }
+
+  .section-title span { color: var(--gold); }
+
+  .section-desc {
+    font-size: 15px;
+    color: var(--text-muted);
+    line-height: 1.7;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  /* ─── ABOUT ─── */
+  #tentang {
+    padding: 100px 5%;
+    background: var(--white);
+  }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .about-img {
+    position: relative;
+    border-radius: 16px;
+    overflow: hidden;
+  }
+
+  .about-img img {
+    width: 100%;
+    height: 420px;
+    object-fit: cover;
+    border-radius: 16px;
+    display: block;
+  }
+
+  .about-img-badge {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    background: var(--gold);
+    color: var(--dark);
+    padding: 12px 20px;
+    border-radius: 12px;
+    text-align: center;
+    font-weight: 700;
+  }
+
+  .about-img-badge .num {
+    font-size: 28px;
+    font-family: 'Playfair Display', serif;
+    display: block;
+  }
+
+  .about-img-badge .lbl { font-size: 11px; }
+
+  .about-tag {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    background: rgba(26,18,9,0.8);
+    color: var(--gold-light);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    padding: 6px 14px;
+    border-radius: 20px;
+  }
+
+  .about-text p {
+    font-size: 15px;
+    color: var(--text-muted);
+    line-height: 1.8;
+    margin-bottom: 16px;
+  }
+
+  .about-stats-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-top: 32px;
+    padding-top: 32px;
+    border-top: 1px solid var(--border);
+  }
+
+  .about-stat {
+    text-align: center;
+    padding: 16px 8px;
+    background: var(--gold-pale);
+    border-radius: 12px;
+  }
+
+  .about-stat .num {
+    font-family: 'Playfair Display', serif;
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--gold);
+  }
+
+  .about-stat .lbl {
+    font-size: 11px;
+    color: var(--text-muted);
+    margin-top: 4px;
+  }
+
+  /* ─── PAVILIONS ─── */
+  #paviliun {
+    padding: 100px 5%;
+    background: var(--cream);
+  }
+
+  .pavilion-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+    max-width: 1100px;
+    margin: 48px auto 0;
+  }
+
+  .pavilion-card {
+    background: var(--white);
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    transition: transform 0.25s, box-shadow 0.25s;
+  }
+
+  .pavilion-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(201,150,58,0.15);
+  }
+
+  .pavilion-img {
+    position: relative;
+    height: 200px;
+    overflow: hidden;
+  }
+
+  .pavilion-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s;
+  }
+
+  .pavilion-card:hover .pavilion-img img { transform: scale(1.05); }
+
+  .pavilion-badge {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    background: var(--gold);
+    color: var(--dark);
+    font-size: 11px;
+    font-weight: 700;
+    padding: 4px 12px;
+    border-radius: 20px;
+  }
+
+  .pavilion-body {
+    padding: 20px 24px;
+  }
+
+  .pavilion-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+
+  .pavilion-subtitle {
+    font-size: 12px;
+    color: var(--gold);
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+
+  .pavilion-body p {
+    font-size: 14px;
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin-bottom: 16px;
+  }
+
+  .pavilion-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .tag {
+    background: var(--gold-pale);
+    color: var(--brown);
+    font-size: 11px;
+    font-weight: 500;
+    padding: 4px 10px;
+    border-radius: 20px;
+    border: 1px solid rgba(201,150,58,0.25);
+  }
+
+  /* ─── GALLERY ─── */
+  #galeri {
+    padding: 100px 5%;
+    background: var(--dark);
+    text-align: center;
+  }
+
+  #galeri .section-title { color: var(--white); }
+  #galeri .section-desc { color: rgba(255,255,255,0.5); }
+
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    max-width: 1000px;
+    margin: 48px auto 0;
+  }
+
+  .gallery-item {
+    border-radius: 12px;
+    overflow: hidden;
+    aspect-ratio: 4/3;
+    background: rgba(255,255,255,0.05);
+    position: relative;
+  }
+
+  .gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s;
+  }
+
+  .gallery-item:hover img { transform: scale(1.08); }
+
+  .gallery-item::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(201,150,58,0);
+    transition: background 0.3s;
+  }
+
+  .gallery-item:hover::after { background: rgba(201,150,58,0.15); }
+
+  /* ─── EVENTS ─── */
+  #events {
+    padding: 100px 5%;
+    background: var(--white);
+  }
+
+  .events-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+    max-width: 1100px;
+    margin: 48px auto 0;
+  }
+
+  .event-card {
+    display: flex;
+    flex-direction: column;
+    background: var(--cream);
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    transition: transform 0.25s;
+  }
+
+  .event-card:hover { transform: translateY(-4px); }
+
+  .event-img {
+    height: 200px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .event-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .event-type {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: var(--gold);
+    color: var(--dark);
+    font-size: 11px;
+    font-weight: 700;
+    padding: 4px 12px;
+    border-radius: 20px;
+  }
+
+  .event-body { padding: 20px 24px; flex: 1; display: flex; flex-direction: column; }
+
+  .event-date {
+    font-size: 12px;
+    color: var(--gold);
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+
+  .event-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+
+  .event-desc {
+    font-size: 14px;
+    color: var(--text-muted);
+    line-height: 1.6;
+    flex: 1;
+    margin-bottom: 16px;
+  }
+
+  .event-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid var(--border);
+    padding-top: 12px;
+  }
+
+  .event-location { font-size: 12px; color: var(--text-muted); }
+
+  .event-price-free {
+    background: #E8F5E9;
+    color: #2E7D32;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 4px 12px;
+    border-radius: 20px;
+  }
+
+  .event-price-paid {
+    background: var(--gold-pale);
+    color: var(--gold);
+    font-size: 12px;
+    font-weight: 700;
+    padding: 4px 12px;
+    border-radius: 20px;
+  }
+
+  /* ─── VISITOR INFO ─── */
+  #info {
+    padding: 100px 5%;
+    background: var(--cream);
+  }
+
+  .info-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    max-width: 1100px;
+    margin: 48px auto 0;
+  }
+
+  .info-card {
+    background: var(--white);
+    border-radius: 16px;
+    padding: 28px;
+    border: 1px solid var(--border);
+  }
+
+  .info-card-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+
+  .info-icon {
+    width: 40px;
+    height: 40px;
+    background: var(--gold-pale);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+  }
+
+  .info-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    font-weight: 700;
+  }
+
+  .info-card p {
+    font-size: 12px;
+    color: var(--text-muted);
+  }
+
+  .info-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 14px;
+  }
+
+  .info-row:last-child { border-bottom: none; }
+  .info-row .label { color: var(--text-muted); }
+  .info-row .value { font-weight: 500; text-align: right; }
+  .info-row .closed { color: #e53935; }
+  .info-row .note { font-size: 11px; color: var(--text-muted); }
+
+  .map-btn {
+    display: block;
+    margin-top: 14px;
+    text-align: center;
+    background: var(--gold);
+    color: var(--dark);
+    padding: 10px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  /* ─── TICKET SECTION ─── */
+  #tiket {
+    padding: 100px 5%;
+    background: var(--dark2);
+    text-align: center;
+  }
+
+  #tiket .section-title { color: var(--white); }
+  #tiket .section-desc { color: rgba(255,255,255,0.55); margin: 0 auto 48px; }
+
+  .ticket-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+    max-width: 1000px;
+    margin: 0 auto 48px;
+  }
+
+  .ticket-card {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(201,150,58,0.25);
+    border-radius: 16px;
+    padding: 28px 24px;
+    text-align: left;
+    position: relative;
+    transition: all 0.25s;
+    cursor: default;
+  }
+
+  .ticket-card.featured {
+    border-color: var(--gold);
+    background: rgba(201,150,58,0.08);
+  }
+
+  .ticket-card .featured-badge {
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--gold);
+    color: var(--dark);
+    font-size: 11px;
+    font-weight: 700;
+    padding: 4px 14px;
+    border-radius: 20px;
+    white-space: nowrap;
+  }
+
+  .ticket-type {
+    font-size: 12px;
+    color: var(--gold);
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  .ticket-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 16px;
+  }
+
+  .ticket-price {
+    font-family: 'Playfair Display', serif;
+    font-size: 30px;
+    font-weight: 700;
+    color: var(--gold);
+    margin-bottom: 4px;
+  }
+
+  .ticket-price-note { font-size: 12px; color: rgba(255,255,255,0.4); margin-bottom: 20px; }
+
+  .ticket-features { list-style: none; margin-bottom: 24px; }
+
+  .ticket-features li {
+    font-size: 13px;
+    color: rgba(255,255,255,0.65);
+    padding: 5px 0;
+    padding-left: 20px;
+    position: relative;
+  }
+
+  .ticket-features li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--gold);
+    font-size: 12px;
+  }
+
+  .btn-buy {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--gold);
+    background: transparent;
+    color: var(--gold);
+    border-radius: 30px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: 'DM Sans', sans-serif;
+  }
+
+  .btn-buy:hover, .ticket-card.featured .btn-buy {
+    background: var(--gold);
+    color: var(--dark);
+  }
+
+  /* ─── PAYMENT MODAL ─── */
+  .modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: rgba(0,0,0,0.75);
+    backdrop-filter: blur(6px);
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+
+  .modal-overlay.active { display: flex; }
+
+  .modal {
+    background: var(--white);
+    border-radius: 20px;
+    width: 100%;
+    max-width: 520px;
+    max-height: 90vh;
+    overflow-y: auto;
+    animation: modalIn 0.25s ease;
+    position: relative;
+  }
+
+  @keyframes modalIn {
+    from { transform: scale(0.95) translateY(20px); opacity: 0; }
+    to { transform: scale(1) translateY(0); opacity: 1; }
+  }
+
+  .modal-header {
+    padding: 24px 28px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+
+  .modal-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--text);
+  }
+
+  .modal-subtitle { font-size: 13px; color: var(--text-muted); margin-top: 4px; }
+
+  .modal-close {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: var(--cream);
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    color: var(--text);
+    transition: background 0.2s;
+  }
+
+  .modal-close:hover { background: var(--border); }
+
+  .modal-body { padding: 20px 28px 28px; }
+
+  /* Step 1: Ticket selection */
+  .form-group { margin-bottom: 18px; }
+
+  .form-label {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 8px;
+  }
+
+  .form-input {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1.5px solid #E0D5C5;
+    border-radius: 10px;
+    font-size: 14px;
+    font-family: 'DM Sans', sans-serif;
+    color: var(--text);
+    background: var(--white);
+    outline: none;
+    transition: border-color 0.2s;
+  }
+
+  .form-input:focus { border-color: var(--gold); }
+
+  .ticket-qty {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  .qty-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 14px;
+    border: 1.5px solid #E0D5C5;
+    border-radius: 10px;
+    background: var(--cream);
+  }
+
+  .qty-info .qty-label { font-size: 13px; font-weight: 600; }
+  .qty-info .qty-price { font-size: 12px; color: var(--text-muted); }
+
+  .qty-controls {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .qty-btn {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    border: 1.5px solid #E0D5C5;
+    background: var(--white);
+    font-size: 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+    line-height: 1;
+    color: var(--text);
+  }
+
+  .qty-btn:hover { background: var(--gold); border-color: var(--gold); color: var(--dark); }
+
+  .qty-num { font-size: 15px; font-weight: 600; min-width: 20px; text-align: center; }
+
+  .order-summary {
+    background: var(--gold-pale);
+    border-radius: 12px;
+    padding: 16px 18px;
+    margin: 16px 0;
+    border: 1px solid rgba(201,150,58,0.3);
+  }
+
+  .summary-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    padding: 4px 0;
+  }
+
+  .summary-row.total {
+    border-top: 1px solid rgba(201,150,58,0.3);
+    margin-top: 8px;
+    padding-top: 8px;
+    font-weight: 700;
+    font-size: 16px;
+    color: var(--gold);
+  }
+
+  /* Payment Method */
+  .payment-methods {
+    display: grid;
+    gap: 10px;
+  }
+
+  .pay-method {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 16px;
+    border: 1.5px solid #E0D5C5;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.2s;
+    background: var(--white);
+    text-align: left;
+    width: 100%;
+    font-family: 'DM Sans', sans-serif;
+  }
+
+  .pay-method:hover { border-color: var(--gold); background: var(--gold-pale); }
+  .pay-method.selected { border-color: var(--gold); background: var(--gold-pale); }
+
+  .pay-icon {
+    width: 44px;
+    height: 30px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    flex-shrink: 0;
+  }
+
+  .pay-icon.qris { background: #E53935; color: white; font-size: 9px; }
+  .pay-icon.bca { background: #003087; color: white; font-size: 9px; }
+  .pay-icon.bni { background: #F26522; color: white; font-size: 9px; }
+  .pay-icon.bri { background: #00529C; color: white; font-size: 9px; }
+  .pay-icon.mandiri { background: #003D7A; color: #F5A623; font-size: 8px; }
+  .pay-icon.gopay { background: #00AED6; color: white; font-size: 8px; }
+  .pay-icon.ovo { background: #4C3494; color: white; font-size: 10px; }
+  .pay-icon.dana { background: #118EEA; color: white; font-size: 9px; }
+
+  .pay-info .pay-name { font-size: 14px; font-weight: 600; color: var(--text); }
+  .pay-info .pay-desc { font-size: 12px; color: var(--text-muted); }
+
+  .pay-arrow { margin-left: auto; font-size: 18px; color: var(--text-muted); }
+
+  /* Payment detail screens */
+  .pay-screen { display: none; }
+  .pay-screen.active { display: block; }
+
+  .qris-box {
+    text-align: center;
+    padding: 20px;
+  }
+
+  .qris-mock {
+    width: 200px;
+    height: 200px;
+    background: #fff;
+    border: 4px solid #E53935;
+    border-radius: 12px;
+    margin: 0 auto 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 8px;
+    padding: 16px;
+  }
+
+  .qris-pattern {
+    width: 100%;
+    height: 140px;
+    background-image:
+      repeating-linear-gradient(0deg, #333 0, #333 3px, transparent 0, transparent 8px),
+      repeating-linear-gradient(90deg, #333 0, #333 3px, transparent 0, transparent 8px);
+    background-size: 8px 8px;
+    border-radius: 4px;
+    opacity: 0.8;
+  }
+
+  .qris-logo { font-size: 10px; font-weight: 800; color: #E53935; letter-spacing: 1px; }
+
+  .bank-transfer-box {
+    background: var(--dark2);
+    border-radius: 14px;
+    padding: 20px;
+    color: white;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 12px;
+   }
+
+  .bank-account-card {
+    background: var(--dark2);
+    border-radius: 14px;
+    padding: 20px;
+    color: white;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 12px;
+  }
+
+  .bank-account-card::before {
+    content: '';
+    position: absolute;
+    top: -20px;
+    right: -20px;
+    width: 100px;
+    height: 100px;
+    background: rgba(201,150,58,0.15);
+    border-radius: 50%;
+  }
+
+  .bank-name { font-size: 12px; color: var(--gold); font-weight: 700; letter-spacing: 2px; margin-bottom: 8px; }
+  .bank-number {
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    margin-bottom: 4px;
+    font-family: monospace;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .copy-btn {
+    background: rgba(201,150,58,0.2);
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    font-size: 11px;
+    padding: 4px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: 'DM Sans', sans-serif;
+  }
+
+  .copy-btn:hover { background: var(--gold); color: var(--dark); }
+
+  .bank-holder { font-size: 13px; color: rgba(255,255,255,0.6); }
+
+  .transfer-amount {
+    background: var(--gold-pale);
+    border: 1px solid rgba(201,150,58,0.3);
+    border-radius: 10px;
+    padding: 14px 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 12px;
+  }
+
+  .transfer-amount .lbl { font-size: 12px; color: var(--text-muted); }
+  .transfer-amount .amt { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 700; color: var(--gold); }
+
+  .transfer-note {
+    background: #FFF8E1;
+    border-left: 3px solid #F5A623;
+    border-radius: 0 8px 8px 0;
+    padding: 10px 14px;
+    font-size: 12px;
+    color: #7A5800;
+    margin-top: 12px;
+    line-height: 1.6;
+  }
+
+  /* Step: Success */
+  .success-screen {
+    text-align: center;
+    padding: 20px 0;
+  }
+
+  .success-icon {
+    width: 72px;
+    height: 72px;
+    background: linear-gradient(135deg, var(--gold), var(--gold-light));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+    margin: 0 auto 20px;
+  }
+
+  /* Step indicator */
+  .steps {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    margin-bottom: 24px;
+    padding: 0 28px;
+    padding-top: 20px;
+  }
+
+  .step {
+    display: flex;
+    align-items: center;
+    flex: 1;
+    position: relative;
+  }
+
+  .step-circle {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: #E0D5C5;
+    color: var(--text-muted);
+    font-size: 12px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: all 0.3s;
+    z-index: 1;
+  }
+
+  .step.active .step-circle { background: var(--gold); color: var(--dark); }
+  .step.done .step-circle { background: #4CAF50; color: white; }
+
+  .step-line {
+    height: 2px;
+    background: #E0D5C5;
+    flex: 1;
+    transition: background 0.3s;
+  }
+
+  .step.done + .step .step-line, .step.done .step-line { background: #4CAF50; }
+
+  .step-label {
+    position: absolute;
+    top: 34px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 10px;
+    color: var(--text-muted);
+    white-space: nowrap;
+    font-weight: 500;
+  }
+
+  .step.active .step-label { color: var(--gold); font-weight: 600; }
+
+  .modal-btn {
+    width: 100%;
+    padding: 14px;
+    background: var(--gold);
+    color: var(--dark);
+    border: none;
+    border-radius: 30px;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    transition: all 0.2s;
+    margin-top: 8px;
+  }
+
+  .modal-btn:hover { background: var(--gold-light); }
+
+  .modal-btn-outline {
+    width: 100%;
+    padding: 12px;
+    background: transparent;
+    color: var(--text-muted);
+    border: 1.5px solid #E0D5C5;
+    border-radius: 30px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    transition: all 0.2s;
+    margin-top: 8px;
+  }
+
+  .modal-btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--dark);
+    color: rgba(255,255,255,0.65);
+    padding: 60px 5% 24px;
+  }
+
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1.5fr;
+    gap: 40px;
+    max-width: 1200px;
+    margin: 0 auto 40px;
+  }
+
+  .footer-brand .logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    color: var(--white);
+    margin-bottom: 12px;
+  }
+
+  .footer-brand .logo span { color: var(--gold); }
+
+  .footer-brand p {
+    font-size: 13px;
+    line-height: 1.7;
+    margin-bottom: 16px;
+  }
+
+  .footer-contact {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .footer-contact span { font-size: 12px; }
+
+  .footer-col h4 {
+    color: var(--white);
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 14px;
+    letter-spacing: 0.5px;
+  }
+
+  .footer-links { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+
+  .footer-links a {
+    color: rgba(255,255,255,0.55);
+    text-decoration: none;
+    font-size: 13px;
+    transition: color 0.2s;
+  }
+
+  .footer-links a:hover { color: var(--gold); }
+
+  .footer-hours .hour-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    padding: 4px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .footer-hours .closed-text { color: #e57373; font-weight: 600; }
+
+  .footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.08);
+    padding-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    font-size: 12px;
+  }
+
+  .social-links { display: flex; gap: 12px; }
+
+  .social-links a {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    text-decoration: none;
+    color: rgba(255,255,255,0.6);
+    transition: all 0.2s;
+  }
+
+  .social-links a:hover { background: var(--gold); color: var(--dark); border-color: var(--gold); }
+
+  /* Utility */
+  .text-center { text-align: center; }
+  .hidden { display: none !important; }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .nav-links { display: none; }
+    .about-grid { grid-template-columns: 1fr; }
+    .pavilion-grid, .events-grid { grid-template-columns: 1fr; }
+    .info-grid { grid-template-columns: 1fr; }
+    .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+    .about-stats-row { grid-template-columns: repeat(2, 1fr); }
+    .ticket-qty { grid-template-columns: 1fr; }
+    .hero-img-overlay { opacity: 0.3; }
+    #kontak > div { grid-template-columns: 1fr !important; }
+  }
+
+  @media (max-width: 480px) {
+    .hero-stats { flex-wrap: wrap; gap: 16px; }
+    .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+    .footer-grid { grid-template-columns: 1fr; }
+    .ticket-grid { grid-template-columns: 1fr; }
+  }
+
+  .scroll-fade {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .scroll-fade.visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* Announcement bar */
+  .announcement {
+    background: var(--gold);
+    color: var(--dark);
+    text-align: center;
+    padding: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+  }
+</style>
+</head>
+<body>
+
+<!-- Announcement Bar -->
+<div class="announcement">
+  🏛️ Museum Bali kini buka 7 hari seminggu — Senin-Minggu 08.00-18.00 WITA &nbsp;|&nbsp; Beli tiket online, hemat antrian!
+</div>
+
+<!-- Navigation -->
+<nav>
+  <a href="#beranda" class="nav-logo">
+    <div class="nav-logo-icon">🏛️</div>
+    <span class="nav-logo-text">Museum<span>Bali</span></span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#beranda">Beranda</a></li>
+    <li><a href="#tentang">Tentang</a></li>
+    <li><a href="#paviliun">Paviliun</a></li>
+    <li><a href="#galeri">Galeri</a></li>
+    <li><a href="#events">Events</a></li>
+    <li><a href="#info">Info Kunjungan</a></li>
+    <li><a href="#kontak">Kontak</a></li>
+  </ul>
+  <button class="btn-ticket" onclick="openModal()">🎟 Beli Tiket</button>
+</nav>
+
+<!-- Hero -->
+<section id="beranda">
+  <div class="hero-bg"></div>
+  <div class="hero-pattern"></div>
+  <div class="hero-img-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-badge">Est. 1932 · Denpasar, Bali</div>
+    <h1 class="hero-title">Museum<br><span>Bali</span></h1>
+    <p class="hero-desc">
+      Menyimpan jejak sejarah prasejarah hingga modern. Jendela menuju kekayaan budaya Pulau Dewata yang tak ternilai.
+    </p>
+    <div class="hero-btns">
+      <button class="btn-ticket" onclick="openModal()" style="padding:12px 28px; font-size:15px;">⏱ Rencanakan Kunjungan</button>
+      <a href="#paviliun" class="btn-outline">Jelajahi Koleksi</a>
+    </div>
+  </div>
+  <div class="hero-stats">
+    <div class="hero-stat"><strong>10,000+</strong>Artefak</div>
+    <div class="hero-stat"><strong>4</strong>Paviliun Bersejarah</div>
+    <div class="hero-stat"><strong>90+</strong>Tahun Sejarah</div>
+    <div class="hero-stat"><strong>20K+</strong>Pengunjung/Tahun</div>
+  </div>
+</section>
+
+<!-- About -->
+<section id="tentang">
+  <div class="about-grid scroll-fade">
+    <div class="about-img">
+      <img src="images/aboutGambar.png" alt="Museum Bali" onerror="this.style.background='linear-gradient(135deg,#C9963A,#5C3D1E)'">
+      <div class="about-tag">Established 1932</div>
+      <div class="about-img-badge">
+        <span class="num">10K+</span>
+        <span class="lbl">Artifacts</span>
+      </div>
+    </div>
+    <div class="about-text">
+      <div class="section-label">Tentang Museum</div>
+      <h2 class="section-title">Melestarikan Warisan Budaya Nusantara <span>Sejak 1932</span></h2>
+      <p>Didirikan pada tahun 1932, Museum Bali berdiri sebagai bukti kekayaan warisan budaya pulau ini. Digagas oleh W.F.J. Kroon, seorang arsitek dan Asisten Residen Bali Selatan, museum ini didirikan untuk melestarikan kekayaan budaya Bali agar tidak hilang ditelan waktu.</p>
+      <p>Arsitektur museum ini mengikuti prinsip-prinsip tradisional Bali (Asta Kosala Kosali), menampilkan empat paviliun berbeda yang mewakili berbagai wilayah di Bali. Setiap paviliun menyimpan koleksi unik yang menceritakan kisah evolusi Bali dari zaman prasejarah hingga era modern.</p>
+      <div class="about-stats-row">
+        <div class="about-stat"><div class="num">10K+</div><div class="lbl">Artifacts</div></div>
+        <div class="about-stat"><div class="num">4</div><div class="lbl">Historic Pavilions</div></div>
+        <div class="about-stat"><div class="num">90+</div><div class="lbl">Years of History</div></div>
+        <div class="about-stat"><div class="num">20K+</div><div class="lbl">Annual Visitors</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Pavilions -->
+<section id="paviliun">
+  <div class="text-center scroll-fade">
+    <div class="section-label" style="justify-content:center;">Our Collections</div>
+    <h2 class="section-title">Explore the <span>Pavilions</span></h2>
+    <p class="section-desc">Setiap bangunan merupakan gerbang menuju aspek berbeda dari budaya dan sejarah dari berbagai wilayah di Bali</p>
+  </div>
+  <div class="pavilion-grid">
+    <div class="pavilion-card scroll-fade">
+      <div class="pavilion-img">
+        <img src="images/gedungtabanan.jpeg" alt="Gedung Tabanan" onerror="this.style.background='#C9963A'">
+        <div class="pavilion-badge">Pavilion 1</div>
+      </div>
+      <div class="pavilion-body">
+        <div class="pavilion-subtitle">Arsitektur Bali Selatan</div>
+        <h3 class="pavilion-title">Gedung Tabanan</h3>
+        <p>Gedung Tabanan merupakan pavilun bergaya arsitektur Bali Selatan berupa keris sejarah dan kegunaannya dalam kegiatan masyarakat di Bali.</p>
+        <div class="pavilion-tags">
+          <span class="tag">Senjata Tradisional</span>
+          <span class="tag">Kerajinan Tangan</span>
+          <span class="tag">Wayang Kulit</span>
+          <span class="tag">Batik Ikat</span>
+        </div>
+      </div>
+    </div>
+    <div class="pavilion-card scroll-fade">
+      <div class="pavilion-img">
+        <img src="images/GambarGedungBuleleng.png" alt="Gedung Buleleng" onerror="this.style.background='#8B5E3C'">
+        <div class="pavilion-badge">Pavilion 2</div>
+      </div>
+      <div class="pavilion-body">
+        <div class="pavilion-subtitle">Arsitektur Bali Utara</div>
+        <h3 class="pavilion-title">Gedung Buleleng</h3>
+        <p>Menampilkan kekayaan tradisi tekstil Bali, paviliun ini memamerkan contoh-contoh indah kain poleng, kain geringsing, songket, dan kain tradisional lainnya.</p>
+        <div class="pavilion-tags">
+          <span class="tag">Kain Geringsing</span>
+          <span class="tag">Kain Tenang</span>
+          <span class="tag">Songket</span>
+          <span class="tag">Adat Istiadat</span>
+        </div>
+      </div>
+    </div>
+    <div class="pavilion-card scroll-fade">
+      <div class="pavilion-img">
+        <img src="images/gedungkarangasem.png" alt="Gedung Karangasem" onerror="this.style.background='#6B4226'">
+        <div class="pavilion-badge">Pavilion 3</div>
+      </div>
+      <div class="pavilion-body">
+        <div class="pavilion-subtitle">Arsitektur Bali Timur</div>
+        <h3 class="pavilion-title">Gedung Karangasem</h3>
+        <p>Paviliun ini mengeksplorasi kehidupan spiritual Bali melalui koleksi yang berkaitan dengan Panca Yadnya (lima pengorbanan).</p>
+        <div class="pavilion-tags">
+          <span class="tag">Sajen Ritual</span>
+          <span class="tag">Peralatan</span>
+          <span class="tag">Patung Spiritual</span>
+          <span class="tag">Arsitektur Keagamaan</span>
+        </div>
+      </div>
+    </div>
+    <div class="pavilion-card scroll-fade">
+      <div class="pavilion-img">
+        <img src="images/gedungtimur.png" alt="Gedung Timur" onerror="this.style.background='#4A3728'">
+        <div class="pavilion-badge">Pavilion 4</div>
+      </div>
+      <div class="pavilion-body">
+        <div class="pavilion-subtitle">Arsitektur Bali Selatan</div>
+        <h3 class="pavilion-title">Gedung Timur</h3>
+        <p>Sebuah perjalanan kronologis menelusuri sejarah Bali, dari perkakas batu prasejarah dan artefak perunggu hingga pengaruh kerajaan.</p>
+        <div class="pavilion-tags">
+          <span class="tag">Alat Batu Prasejarah</span>
+          <span class="tag">Artefak Perunggu</span>
+          <span class="tag">Lampu Kerajaan</span>
+          <span class="tag">Seni Istana</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Gallery -->
+<section id="galeri">
+  <div class="text-center scroll-fade">
+    <div class="section-label" style="justify-content:center; color:rgba(201,150,58,0.8);">Visual Journey</div>
+    <h2 class="section-title" style="color:#fff;">Photo <span>Gallery</span></h2>
+    <p class="section-desc" style="color:rgba(255,255,255,0.5);">Di balik arsitektur yang anggun dan koleksi yang berharga, tersimpan cerita dan keindahan budaya Bali yang menginspirasi</p>
+  </div>
+  <div class="gallery-grid scroll-fade">
+<div class="gallery-item"><img src="images/galery1.jpeg" onerror="this.style.background='#3B2412'"></div>
+<div class="gallery-item"><img src="images/galery2.jpeg" alt="Tari Barong" onerror="this.style.background='#5C3D1E'"></div>
+<div class="gallery-item"><img src="images/galery3.png" alt="Museum Bali" onerror="this.style.background='#2C1F0A'"></div>
+<div class="gallery-item"><img src="images/galery4.png" alt="Gerbang Museum" onerror="this.style.background='#4A3728'"></div>
+<div class="gallery-item"><img src="images/galery5.png" alt="Pura Bali" onerror="this.style.background='#3B2412'"></div>
+<div class="gallery-item"><img src="images/galery6.png" alt="Alam Bali" onerror="this.style.background='#1A1209'"></div>
+<div class="gallery-item"><img src="images/galery7.png" alt="Koleksi Artefak" onerror="this.style.background='#2C1F0A'"></div>
+<div class="gallery-item"><img src="images/galery8.png" alt="Tenun Bali" onerror="this.style.background='#5C3D1E'"></div>
+<div class="gallery-item"><img src="images/galery9.png" alt="Interior Museum" onerror="this.style.background='#4A3728'"></div>
+  </div>
+</section>
+
+<!-- Events -->
+<section id="events">
+  <div class="text-center scroll-fade">
+    <div class="section-label" style="justify-content:center;">Events & Activities</div>
+    <h2 class="section-title">Interesting <span>Events</span></h2>
+    <p class="section-desc">Berbagai kegiatan budaya, pameran, dan pertunjukan seni yang diselenggarakan langsung di kompleks, Museum Bali</p>
+  </div>
+  <div class="events-grid">
+    <div class="event-card scroll-fade">
+      <div class="event-img">
+        <img src="images/teater.png" alt="Pertunjukan Teater" onerror="this.style.background='#C9963A'">
+        <div class="event-type">Pertunjukan</div>
+      </div>
+      <div class="event-body">
+        <div class="event-date">📅 Setiap Sabtu, 17.30 - 20.00 WITA</div>
+        <h3 class="event-title">Pertunjukan Karya Seni Teater</h3>
+        <p class="event-desc">Menampilkan karya seni teater kerajaan yang mengambil tema dari raja dahulu agar mendapatkan gambaran tentang kerajaan dahulu.</p>
+        <div class="event-footer">
+          <span class="event-location">📍 Wantilan Museum Bali</span>
+          <span class="event-price-free">Gratis</span>
+        </div>
+      </div>
+    </div>
+    <div class="event-card scroll-fade">
+      <div class="event-img">
+        <img src="images/pameranwayang.png" alt="Wayang Kulit" onerror="this.style.background='#3B2412'">
+        <div class="event-type">Pertunjukan</div>
+      </div>
+      <div class="event-body">
+        <div class="event-date">📅 15 Agustus 2025, 19.30 WITA</div>
+        <h3 class="event-title">Pertunjukan Wayang Kulit</h3>
+        <p class="event-desc">Pertunjukan wayang kulit dengan lakon Ramayana. Saksikan keahlian memainkan wayang kulit dengan iringan gamelan di malam purnama.</p>
+        <div class="event-footer">
+          <span class="event-location">📍 Wantilan Museum Bali</span>
+          <span class="event-price-paid">Rp 50.000</span>
+        </div>
+      </div>
+    </div>
+    <div class="event-card scroll-fade">
+      <div class="event-img">
+        <img src="images/kerisevent.png" alt="Pameran Keris" onerror="this.style.background='#5C3D1E'">
+        <div class="event-type">Pameran</div>
+      </div>
+      <div class="event-body">
+        <div class="event-date">📅 01 - 31 Juli 2025</div>
+        <h3 class="event-title">Pameran Keris Nusantara</h3>
+        <p class="event-desc">Pameran spesial koleksi keris dari berbagai daerah di Nusantara. Pelajari sejarah, bentuk, dan kegunaan keris dalam kehidupan masyarakat Bali.</p>
+        <div class="event-footer">
+          <span class="event-location">📍 Gedung Tabanan</span>
+          <span class="event-price-paid">Termasuk Tiket Masuk</span>
+        </div>
+      </div>
+    </div>
+    <div class="event-card scroll-fade">
+      <div class="event-img">
+        <img src="images/gambelanevent.png" alt="Gamelan & Tari Rejang" onerror="this.style.background='#2C1F0A'">
+        <div class="event-type">Pertunjukan</div>
+      </div>
+      <div class="event-body">
+        <div class="event-date">📅 20 Juni 2025, 15.00 WITA</div>
+        <h3 class="event-title">Pertunjukan Gamelan & Tari Rejang</h3>
+        <p class="event-desc">Nikmati pertunjukan gamelan dan tari Rejang Dewa yang sakral di halaman museum. Pengalaman spiritual dengan tradisi pura Bali.</p>
+        <div class="event-footer">
+          <span class="event-location">📍 Halaman Utama Museum</span>
+          <span class="event-price-free">Gratis</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Visitor Info -->
+<section id="info">
+  <div class="text-center scroll-fade">
+    <div class="section-label" style="justify-content:center;">Plan Your Visit</div>
+    <h2 class="section-title">Visitor <span>Information</span></h2>
+    <p class="section-desc">Semua informasi yang Anda butuhkan untuk pengalaman wisata yang menyenangkan</p>
+  </div>
+  <div class="info-grid scroll-fade">
+    <div class="info-card">
+      <div class="info-card-header">
+        <div class="info-icon">🕐</div>
+        <div>
+          <h3>Opening Hours</h3>
+          <p>Waktu Operasional Museum</p>
+        </div>
+      </div>
+      <div class="info-row"><span class="label">Senin – Kamis</span><span class="value">08.00 – 18.00 WITA</span></div>
+      <div class="info-row"><span class="label">Jumat</span><span class="value">08.00 – 14.30 WITA</span></div>
+      <div class="info-row"><span class="label">Sabtu – Minggu</span><span class="value">08.00 – 18.00 WITA</span></div>
+      <div class="info-row"><span class="label">Hari Libur Nasional</span><span class="value closed">Tutup / Closed</span></div>
+      <div style="margin-top:12px; font-size:11px; color:var(--text-muted); line-height:1.6;">
+        ⚠️ Jam terakhir masuk 30 menit sebelum closing time. Reservasi online direkomendasikan untuk grup.
+      </div>
+    </div>
+    <div class="info-card">
+      <div class="info-card-header">
+        <div class="info-icon">🎟</div>
+        <div>
+          <h3>Ticket Prices</h3>
+          <p>Harga Tiket Masuk</p>
+        </div>
+      </div>
+      <div class="info-row">
+        <span class="label">WNI Anak/Dewasa</span>
+        <span class="value">Rp 15.000 – 30.000</span>
+      </div>
+      <div class="info-row">
+        <span class="label" style="font-size:11px">Harga Khusus Grup</span>
+      </div>
+      <div class="info-row">
+        <span class="label">WNA Anak/Dewasa</span>
+        <span class="value">Rp 60.000 – 150.000</span>
+      </div>
+      <div class="info-row">
+        <span class="label">Pelajar Sekolah</span>
+        <span class="value">Rp 5.000 – 10.000</span>
+      </div>
+      <div class="info-row">
+        <span class="label">Foto Pre-wedding</span>
+        <span class="value">Rp 1.500.000+</span>
+      </div>
+      <button class="btn-ticket" style="width:100%; margin-top:16px; padding:12px; text-align:center; cursor:pointer;" onclick="openModal()">
+        🎟 Beli Tiket Online
+      </button>
+    </div>
+    <div class="info-card">
+      <div class="info-card-header">
+        <div class="info-icon">📍</div>
+        <div>
+          <h3>Location</h3>
+          <p>Lokasi Museum</p>
+        </div>
+      </div>
+      <div style="margin-bottom:12px;">
+        <div style="font-size:12px; color:var(--text-muted); margin-bottom:4px;">📍 Alamat</div>
+        <div style="font-size:13px; line-height:1.6;">Jl. Mayor Wisnu No.1, Dangin Puri Kaja, Denpasar Timur, Kota Denpasar, Bali 80232</div>
+      </div>
+      <div class="info-row"><span class="label">📞 Telepon</span><span class="value">(0361) 222680</span></div>
+      <div class="info-row"><span class="label">✉️ Email</span><span class="value" style="font-size:11px">uptd.museumbali@outlook.com</span></div>
+      <a href="https://maps.google.com/?q=Museum+Bali+Denpasar" target="_blank" class="map-btn">🗺 Buka di Google Maps</a>
+    </div>
+  </div>
+
+  <!-- Facilities -->
+  <div style="max-width:1100px; margin:40px auto 0; text-align:center;">
+    <div class="section-label" style="justify-content:center; margin-bottom:20px;">Facilities & Services</div>
+    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(180px, 1fr)); gap:16px;">
+      <div style="background:var(--white); border:1px solid var(--border); border-radius:12px; padding:18px; display:flex; align-items:center; gap:12px;">
+        <div class="info-icon">📸</div>
+        <div><div style="font-weight:600; font-size:13px;">Area Foto</div><div style="font-size:11px; color:var(--text-muted);">Spot foto instagramable tersedia</div></div>
+      </div>
+      <div style="background:var(--white); border:1px solid var(--border); border-radius:12px; padding:18px; display:flex; align-items:center; gap:12px;">
+        <div class="info-icon">🛍️</div>
+        <div><div style="font-weight:600; font-size:13px;">Ruang Toko</div><div style="font-size:11px; color:var(--text-muted);">Cinderamata dan buku budaya</div></div>
+      </div>
+      <div style="background:var(--white); border:1px solid var(--border); border-radius:12px; padding:18px; display:flex; align-items:center; gap:12px;">
+        <div class="info-icon">🅿️</div>
+        <div><div style="font-weight:600; font-size:13px;">Parkir Luas</div><div style="font-size:11px; color:var(--text-muted);">Area parkir mobil & motor</div></div>
+      </div>
+      <div style="background:var(--white); border:1px solid var(--border); border-radius:12px; padding:18px; display:flex; align-items:center; gap:12px;">
+        <div class="info-icon">♿</div>
+        <div><div style="font-weight:600; font-size:13px;">Akses Difabel</div><div style="font-size:11px; color:var(--text-muted);">Ramah pengunjung difabel</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Ticket Section -->
+<section id="tiket">
+  <div class="text-center scroll-fade">
+    <div class="section-label" style="justify-content:center; color:rgba(201,150,58,0.8);">Reservasi Online</div>
+    <h2 class="section-title">Pesan <span>Tiket</span> Sekarang</h2>
+    <p class="section-desc">Hemat waktu, tanpa antrian panjang. Bayar mudah via QRIS, Transfer Bank, GoPay, OVO, dan DANA.</p>
+  </div>
+  <div class="ticket-grid scroll-fade">
+    <div class="ticket-card">
+      <div class="ticket-type">WNI</div>
+      <div class="ticket-name">Dewasa Lokal</div>
+      <div class="ticket-price">Rp 30.000</div>
+      <div class="ticket-price-note">Per orang</div>
+      <ul class="ticket-features">
+        <li>Akses semua 4 paviliun</li>
+        <li>Area foto outdoor</li>
+        <li>Peta koleksi museum</li>
+      </ul>
+      <button class="btn-buy" onclick="openModal('wni_dewasa')">Beli Tiket</button>
+    </div>
+    <div class="ticket-card">
+      <div class="ticket-type">WNI</div>
+      <div class="ticket-name">Anak &amp; Pelajar</div>
+      <div class="ticket-price">Rp 15.000</div>
+      <div class="ticket-price-note">Per orang (di bawah 17 th)</div>
+      <ul class="ticket-features">
+        <li>Akses semua 4 paviliun</li>
+        <li>Area foto outdoor</li>
+        <li>Buku panduan edukasi</li>
+      </ul>
+      <button class="btn-buy" onclick="openModal('wni_anak')">Beli Tiket</button>
+    </div>
+    <div class="ticket-card featured">
+      <div class="featured-badge">⭐ Paling Populer</div>
+      <div class="ticket-type">WNA</div>
+      <div class="ticket-name">Adult Foreign</div>
+      <div class="ticket-price">Rp 150.000</div>
+      <div class="ticket-price-note">Per person</div>
+      <ul class="ticket-features">
+        <li>Access all 4 pavilions</li>
+        <li>English guided tour</li>
+        <li>Photo spots included</li>
+        <li>Souvenir guide book</li>
+      </ul>
+      <button class="btn-buy" onclick="openModal('wna_dewasa')">Buy Ticket</button>
+    </div>
+    <div class="ticket-card">
+      <div class="ticket-type">WNA</div>
+      <div class="ticket-name">Child Foreign</div>
+      <div class="ticket-price">Rp 60.000</div>
+      <div class="ticket-price-note">Per child (under 12 yo)</div>
+      <ul class="ticket-features">
+        <li>Access all 4 pavilions</li>
+        <li>Kid-friendly guide</li>
+        <li>Activity booklet</li>
+      </ul>
+      <button class="btn-buy" onclick="openModal('wna_anak')">Buy Ticket</button>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ Section -->
+<section id="faq" style="padding:80px 5%; background:var(--white);">
+  <div class="text-center scroll-fade">
+    <div class="section-label" style="justify-content:center;">Bantuan</div>
+    <h2 class="section-title">Pertanyaan <span>Umum</span></h2>
+    <p class="section-desc">Jawaban untuk pertanyaan yang sering ditanyakan pengunjung</p>
+  </div>
+  <div style="max-width:800px; margin:40px auto 0;" id="faqList">
+    <!-- FAQ items injected by JS -->
+  </div>
+</section>
+
+<!-- Cek Booking + Kontak -->
+<section id="kontak" style="padding:80px 5%; background:var(--cream);">
+  <div style="max-width:1100px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr; gap:40px; align-items:start;">
+
+    <!-- Cek Status Booking -->
+    <div class="scroll-fade">
+      <div class="section-label">Cek Pemesanan</div>
+      <h2 class="section-title" style="font-size:28px;">Status <span>Tiket</span></h2>
+      <p style="font-size:14px; color:var(--text-muted); margin-bottom:24px; line-height:1.7;">
+        Sudah pesan tiket? Masukkan kode booking Anda untuk mengecek status dan detail pesanan.
+      </p>
+      <div style="background:var(--white); border-radius:16px; padding:28px; border:1px solid var(--border);">
+        <div class="form-group">
+          <label class="form-label">Kode Booking</label>
+          <input type="text" class="form-input" id="bookingCodeInput" placeholder="Contoh: MB123456" style="text-transform:uppercase; letter-spacing:2px;">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Nomor HP Pemesan</label>
+          <input type="tel" class="form-input" id="bookingPhoneInput" placeholder="08xx-xxxx-xxxx">
+        </div>
+        <button class="modal-btn" onclick="checkBooking()" style="width:100%; margin-top:4px;">🔍 Cek Booking</button>
+        <div id="bookingResult" style="margin-top:16px; display:none;"></div>
+      </div>
+    </div>
+
+    <!-- Hubungi Kami -->
+    <div class="scroll-fade">
+      <div class="section-label">Hubungi Kami</div>
+      <h2 class="section-title" style="font-size:28px;">Ada <span>Pertanyaan?</span></h2>
+      <p style="font-size:14px; color:var(--text-muted); margin-bottom:24px; line-height:1.7;">
+        Kirimkan pesan kepada kami dan tim Museum Bali akan merespons dalam 1×24 jam kerja.
+      </p>
+      <div style="background:var(--white); border-radius:16px; padding:28px; border:1px solid var(--border);">
+        <div class="form-group">
+          <label class="form-label">Nama Lengkap *</label>
+          <input type="text" class="form-input" id="contactName" placeholder="Nama Anda">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Email / WhatsApp *</label>
+          <input type="text" class="form-input" id="contactContact" placeholder="email atau nomor WA Anda">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Subjek</label>
+          <select class="form-input" id="contactSubject">
+            <option value="">-- Pilih Topik --</option>
+            <option>Informasi Tiket</option>
+            <option>Reservasi Grup / Sekolah</option>
+            <option>Foto Pre-wedding</option>
+            <option>Kerjasama & Sponsorship</option>
+            <option>Lainnya</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Pesan *</label>
+          <textarea class="form-input" id="contactMessage" rows="4" placeholder="Tuliskan pertanyaan atau pesan Anda di sini..." style="resize:vertical; min-height:100px;"></textarea>
+        </div>
+        <div id="contactError" style="color:#e53935; font-size:13px; margin-bottom:10px; display:none;">⚠️ Mohon isi semua kolom yang wajib.</div>
+        <div id="contactSuccess" style="background:#E8F5E9; color:#2E7D32; border-radius:10px; padding:12px 16px; font-size:13px; margin-bottom:10px; display:none;">
+          ✅ Pesan Anda berhasil dikirim! Kami akan segera menghubungi Anda.
+        </div>
+        <button class="modal-btn" onclick="sendContact()">📨 Kirim Pesan</button>
+
+        <!-- Quick contact -->
+        <div style="margin-top:20px; padding-top:16px; border-top:1px solid var(--border); display:flex; gap:10px; flex-wrap:wrap;">
+          <a href="https://wa.me/6236122680" target="_blank" style="flex:1; min-width:120px; display:flex; align-items:center; gap:8px; background:#25D366; color:white; border-radius:10px; padding:10px 14px; text-decoration:none; font-size:13px; font-weight:600;">
+            <span style="font-size:18px;">💬</span> WhatsApp
+          </a>
+          <a href="tel:036122680" style="flex:1; min-width:120px; display:flex; align-items:center; gap:8px; background:var(--dark); color:white; border-radius:10px; padding:10px 14px; text-decoration:none; font-size:13px; font-weight:600;">
+            <span style="font-size:18px;">📞</span> Telepon
+          </a>
+          <a href="mailto:uptd.museumbali@outlook.com" style="flex:1; min-width:120px; display:flex; align-items:center; gap:8px; background:var(--gold); color:var(--dark); border-radius:10px; padding:10px 14px; text-decoration:none; font-size:13px; font-weight:600;">
+            <span style="font-size:18px;">✉️</span> Email
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="logo">Museum <span>Bali</span></div>
+      <p>Melestarikan dan mempublikasikan kebudayaan warisan leluhur, memelihara tradisi dan seni, serta menjadi pusat informasi budaya Bali bagi wisatawan dalam dan luar negeri.</p>
+      <div class="footer-contact">
+        <span>📍 Jl. Mayor Wisnu No.1, Denpasar Timur, Bali 80232</span>
+        <span>📞 (0361) 222680</span>
+        <span>✉️ uptd.museumbali@outlook.com</span>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Tautan Cepat</h4>
+      <ul class="footer-links">
+        <li><a href="#beranda">Beranda</a></li>
+        <li><a href="#tentang">Tentang</a></li>
+        <li><a href="#paviliun">Paviliun</a></li>
+        <li><a href="#galeri">Galeri</a></li>
+        <li><a href="#events">Events</a></li>
+        <li><a href="#tiket">Kontak</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Unit Pengelola</h4>
+      <div style="font-size:13px; line-height:1.8; color:rgba(255,255,255,0.55);">
+        <div>UPTD Museum Bali</div>
+        <div>Dinas Kebudayaan</div>
+        <div>Pemerintah Provinsi Bali</div>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Jam Operasional</h4>
+      <div class="footer-hours">
+        <div class="hour-row"><span>Sen – Kam</span><span>08.00 – 18.00</span></div>
+        <div class="hour-row"><span>Jumat</span><span>08.00 – 14.30</span></div>
+        <div class="hour-row"><span>Sabtu – Min</span><span>08.00 – 18.00</span></div>
+        <div class="hour-row"><span>Hari Libur</span><span class="closed-text">Tutup</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 Museum Bali. All rights reserved.</span>
+    <div class="social-links">
+      <a href="#" title="Instagram">📷</a>
+      <a href="#" title="Facebook">📘</a>
+      <a href="#" title="Website">🌐</a>
+    </div>
+  </div>
+</footer>
+
+<!-- ─── PAYMENT MODAL ─── -->
+<div class="modal-overlay" id="modalOverlay" onclick="handleOverlayClick(event)">
+  <div class="modal" id="modalBox">
+    <!-- Steps -->
+    <div class="steps" id="stepIndicator">
+      <div class="step active" id="step1ind">
+        <div class="step-circle">1</div>
+        <span class="step-label">Tiket</span>
+      </div>
+      <div class="step-line"></div>
+      <div class="step" id="step2ind">
+        <div class="step-circle">2</div>
+        <span class="step-label">Data Pemesan</span>
+      </div>
+      <div class="step-line"></div>
+      <div class="step" id="step3ind">
+        <div class="step-circle">3</div>
+        <span class="step-label">Pembayaran</span>
+      </div>
+      <div class="step-line"></div>
+      <div class="step" id="step4ind">
+        <div class="step-circle">4</div>
+        <span class="step-label">Selesai</span>
+      </div>
+    </div>
+
+    <!-- STEP 1: Pilih Tiket -->
+    <div id="modalStep1">
+      <div class="modal-header">
+        <div>
+          <div class="modal-title">Pilih Tiket</div>
+          <div class="modal-subtitle">Pilih jenis dan jumlah tiket kunjungan</div>
+        </div>
+        <button class="modal-close" onclick="closeModal()">✕</button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label class="form-label">Tanggal Kunjungan</label>
+          <input type="date" class="form-input" id="visitDate">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Jumlah Tiket</label>
+          <div class="ticket-qty">
+            <div class="qty-item">
+              <div class="qty-info">
+                <div class="qty-label">WNI Dewasa</div>
+                <div class="qty-price">Rp 30.000 / orang</div>
+              </div>
+              <div class="qty-controls">
+                <button class="qty-btn" onclick="changeQty('wni_dewasa', -1)">−</button>
+                <span class="qty-num" id="qty_wni_dewasa">0</span>
+                <button class="qty-btn" onclick="changeQty('wni_dewasa', 1)">+</button>
+              </div>
+            </div>
+            <div class="qty-item">
+              <div class="qty-info">
+                <div class="qty-label">WNI Anak/Pelajar</div>
+                <div class="qty-price">Rp 15.000 / orang</div>
+              </div>
+              <div class="qty-controls">
+                <button class="qty-btn" onclick="changeQty('wni_anak', -1)">−</button>
+                <span class="qty-num" id="qty_wni_anak">0</span>
+                <button class="qty-btn" onclick="changeQty('wni_anak', 1)">+</button>
+              </div>
+            </div>
+            <div class="qty-item">
+              <div class="qty-info">
+                <div class="qty-label">WNA Dewasa</div>
+                <div class="qty-price">Rp 150.000 / orang</div>
+              </div>
+              <div class="qty-controls">
+                <button class="qty-btn" onclick="changeQty('wna_dewasa', -1)">−</button>
+                <span class="qty-num" id="qty_wna_dewasa">0</span>
+                <button class="qty-btn" onclick="changeQty('wna_dewasa', 1)">+</button>
+              </div>
+            </div>
+            <div class="qty-item">
+              <div class="qty-info">
+                <div class="qty-label">WNA Anak</div>
+                <div class="qty-price">Rp 60.000 / orang</div>
+              </div>
+              <div class="qty-controls">
+                <button class="qty-btn" onclick="changeQty('wna_anak', -1)">−</button>
+                <span class="qty-num" id="qty_wna_anak">0</span>
+                <button class="qty-btn" onclick="changeQty('wna_anak', 1)">+</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="order-summary" id="step1Summary">
+          <div class="summary-row"><span style="color:var(--text-muted); font-size:13px;">Ringkasan Pesanan</span></div>
+          <div id="summaryLines" style="margin-top:8px;"></div>
+          <div class="summary-row total">
+            <span>Total</span>
+            <span id="totalAmount">Rp 0</span>
+          </div>
+        </div>
+
+        <div id="step1Error" style="color:#e53935; font-size:13px; margin-bottom:12px; display:none;">
+          ⚠️ Pilih minimal 1 tiket dan tanggal kunjungan untuk melanjutkan.
+        </div>
+
+        <button class="modal-btn" onclick="goStep2()">Lanjutkan →</button>
+        <button class="modal-btn-outline" onclick="closeModal()">Batal</button>
+      </div>
+    </div>
+
+    <!-- STEP 2: Data Pemesan -->
+    <div id="modalStep2" class="hidden">
+      <div class="modal-header">
+        <div>
+          <div class="modal-title">Data Pemesan</div>
+          <div class="modal-subtitle">Lengkapi informasi pemesan tiket</div>
+        </div>
+        <button class="modal-close" onclick="closeModal()">✕</button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label class="form-label">Nama Lengkap *</label>
+          <input type="text" class="form-input" id="fullName" placeholder="Masukkan nama lengkap">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Nomor HP / WhatsApp *</label>
+          <input type="tel" class="form-input" id="phone" placeholder="08xx-xxxx-xxxx">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Email</label>
+          <input type="email" class="form-input" id="email" placeholder="email@contoh.com (opsional)">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Asal Kota</label>
+          <input type="text" class="form-input" id="city" placeholder="Denpasar, Jakarta, dll">
+        </div>
+
+        <div class="order-summary" style="margin-top:16px;">
+          <div class="summary-row total">
+            <span>Total Pembayaran</span>
+            <span id="step2Total">Rp 0</span>
+          </div>
+        </div>
+
+        <div id="step2Error" style="color:#e53935; font-size:13px; margin-bottom:12px; display:none;">
+          ⚠️ Nama lengkap dan nomor HP wajib diisi.
+        </div>
+
+        <button class="modal-btn" onclick="goStep3()">Pilih Metode Bayar →</button>
+        <button class="modal-btn-outline" onclick="goStep1Back()">← Kembali</button>
+      </div>
+    </div>
+
+    <!-- STEP 3: Pembayaran -->
+    <div id="modalStep3" class="hidden">
+      <div class="modal-header">
+        <div>
+          <div class="modal-title">Metode Pembayaran</div>
+          <div class="modal-subtitle">Pilih cara pembayaran yang Anda inginkan</div>
+        </div>
+        <button class="modal-close" onclick="closeModal()">✕</button>
+      </div>
+      <div class="modal-body">
+        <!-- Method Selection -->
+        <div id="payMethodList">
+          <div style="font-size:13px; font-weight:600; color:var(--text-muted); margin-bottom:12px; text-transform:uppercase; letter-spacing:1px;">
+            Scan & Pay
+          </div>
+          <div class="payment-methods" style="margin-bottom:16px;">
+            <button class="pay-method" onclick="selectPayMethod('qris')">
+              <div class="pay-icon qris">QRIS</div>
+              <div class="pay-info">
+                <div class="pay-name">QRIS</div>
+                <div class="pay-desc">Scan QR Code – semua e-wallet & m-banking</div>
+              </div>
+              <div class="pay-arrow">›</div>
+            </button>
+          </div>
+
+          <div style="font-size:13px; font-weight:600; color:var(--text-muted); margin-bottom:12px; text-transform:uppercase; letter-spacing:1px;">
+            Transfer Bank
+          </div>
+          <div class="payment-methods" style="margin-bottom:16px;">
+            <button class="pay-method" onclick="selectPayMethod('bca')">
+              <div class="pay-icon bca">BCA</div>
+              <div class="pay-info">
+                <div class="pay-name">Bank BCA</div>
+                <div class="pay-desc">Transfer via m-BCA, KlikBCA, ATM BCA</div>
+              </div>
+              <div class="pay-arrow">›</div>
+            </button>
+            <button class="pay-method" onclick="selectPayMethod('bni')">
+              <div class="pay-icon bni">BNI</div>
+              <div class="pay-info">
+                <div class="pay-name">Bank BNI</div>
+                <div class="pay-desc">Transfer via BNI Mobile, ATM BNI</div>
+              </div>
+              <div class="pay-arrow">›</div>
+            </button>
+            <button class="pay-method" onclick="selectPayMethod('bri')">
+              <div class="pay-icon bri">BRI</div>
+              <div class="pay-info">
+                <div class="pay-name">Bank BRI</div>
+                <div class="pay-desc">Transfer via BRImo, ATM BRI</div>
+              </div>
+              <div class="pay-arrow">›</div>
+            </button>
+            <button class="pay-method" onclick="selectPayMethod('mandiri')">
+              <div class="pay-icon mandiri">MANDIRI</div>
+              <div class="pay-info">
+                <div class="pay-name">Bank Mandiri</div>
+                <div class="pay-desc">Transfer via Livin', ATM Mandiri</div>
+              </div>
+              <div class="pay-arrow">›</div>
+            </button>
+          </div>
+
+          <div style="font-size:13px; font-weight:600; color:var(--text-muted); margin-bottom:12px; text-transform:uppercase; letter-spacing:1px;">
+            Dompet Digital
+          </div>
+          <div class="payment-methods">
+            <button class="pay-method" onclick="selectPayMethod('gopay')">
+              <div class="pay-icon gopay">GoPay</div>
+              <div class="pay-info">
+                <div class="pay-name">GoPay</div>
+                <div class="pay-desc">Bayar via aplikasi Gojek</div>
+              </div>
+              <div class="pay-arrow">›</div>
+            </button>
+            <button class="pay-method" onclick="selectPayMethod('ovo')">
+              <div class="pay-icon ovo">OVO</div>
+              <div class="pay-info">
+                <div class="pay-name">OVO</div>
+                <div class="pay-desc">Bayar via aplikasi OVO</div>
+              </div>
+              <div class="pay-arrow">›</div>
+            </button>
+            <button class="pay-method" onclick="selectPayMethod('dana')">
+              <div class="pay-icon dana">DANA</div>
+              <div class="pay-info">
+                <div class="pay-name">DANA</div>
+                <div class="pay-desc">Bayar via aplikasi DANA</div>
+              </div>
+              <div class="pay-arrow">›</div>
+            </button>
+          </div>
+        </div>
+
+        <!-- QRIS Screen -->
+        <div id="payQris" class="pay-screen">
+          <div class="qris-box">
+            <div style="font-size:14px; font-weight:600; margin-bottom:4px;">Scan QR Code untuk Bayar</div>
+            <div style="font-size:12px; color:var(--text-muted); margin-bottom:16px;">Gunakan aplikasi apapun yang mendukung QRIS</div>
+            <div class="qris-mock">
+              <div class="qris-pattern"></div>
+              <div class="qris-logo">QRIS</div>
+            </div>
+            <div style="font-size:12px; color:var(--text-muted); margin-bottom:4px;">Merchant: UPTD MUSEUM BALI</div>
+            <div style="font-size:22px; font-weight:700; color:var(--gold); font-family:'Playfair Display',serif;" id="qrisAmount">Rp 0</div>
+            <div style="font-size:11px; color:var(--text-muted); margin-top:4px;">QR Code berlaku 15 menit</div>
+          </div>
+          <div class="transfer-note">
+            📱 Cara bayar: Buka m-banking atau e-wallet Anda → Pilih "Bayar QRIS" atau "Scan QR" → Scan kode di atas → Konfirmasi pembayaran
+          </div>
+          <button class="modal-btn" style="margin-top:16px;" onclick="confirmPayment()">✅ Saya Sudah Bayar</button>
+          <button class="modal-btn-outline" onclick="backToMethodList()">← Pilih Metode Lain</button>
+        </div>
+
+        <!-- Transfer Bank Screen -->
+        <div id="payTransfer" class="pay-screen">
+          <div id="bankDetails"></div>
+          <button class="modal-btn" style="margin-top:16px;" onclick="confirmPayment()">✅ Saya Sudah Transfer</button>
+          <button class="modal-btn-outline" onclick="backToMethodList()">← Pilih Metode Lain</button>
+        </div>
+
+        <!-- E-Wallet Screen -->
+        <div id="payEwallet" class="pay-screen">
+          <div id="ewalletDetails"></div>
+          <button class="modal-btn" style="margin-top:16px;" onclick="confirmPayment()">✅ Saya Sudah Bayar</button>
+          <button class="modal-btn-outline" onclick="backToMethodList()">← Pilih Metode Lain</button>
+        </div>
+
+        <button class="modal-btn-outline" id="backToStep2Btn" onclick="goStep2Back()">← Kembali ke Data Pemesan</button>
+      </div>
+    </div>
+
+    <!-- STEP 4: Sukses -->
+    <div id="modalStep4" class="hidden">
+      <div class="modal-header" style="border: none;">
+        <div></div>
+        <button class="modal-close" onclick="closeModal()">✕</button>
+      </div>
+      <div class="modal-body">
+        <div class="success-screen">
+          <div class="success-icon">🎟</div>
+          <h2 style="font-family:'Playfair Display',serif; font-size:24px; margin-bottom:8px;">Pemesanan Berhasil!</h2>
+          <p style="font-size:14px; color:var(--text-muted); margin-bottom:24px; line-height:1.6;">
+            Terima kasih telah memesan tiket Museum Bali.<br>
+            Detail tiket akan dikirimkan ke WhatsApp/email Anda.
+          </p>
+
+          <div style="background:var(--gold-pale); border:1px solid rgba(201,150,58,0.3); border-radius:14px; padding:20px; text-align:left; margin-bottom:20px;">
+            <div style="font-size:11px; font-weight:700; letter-spacing:2px; color:var(--gold); margin-bottom:12px;">RINGKASAN PEMESANAN</div>
+            <div id="orderConfirmation"></div>
+          </div>
+
+          <div style="background:#E8F5E9; border-radius:10px; padding:12px 16px; font-size:13px; color:#2E7D32; margin-bottom:16px; line-height:1.6;">
+            📌 Tunjukkan konfirmasi ini atau e-tiket di WhatsApp Anda kepada petugas museum saat tiba.
+          </div>
+
+          <button class="modal-btn" onclick="closeModal()">Selesai</button>
+          <button class="modal-btn-outline" onclick="printTicket()">🖨️ Cetak / Simpan Tiket</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ─── DATA ───
+const prices = { wni_dewasa: 30000, wni_anak: 15000, wna_dewasa: 150000, wna_anak: 60000 };
+const labels = { wni_dewasa: 'WNI Dewasa', wni_anak: 'WNI Anak/Pelajar', wna_dewasa: 'WNA Adult', wna_anak: 'WNA Child' };
+let qty = { wni_dewasa: 0, wni_anak: 0, wna_dewasa: 0, wna_anak: 0 };
+
+const bankInfo = {
+  bca: { name: 'BCA', number: '1234567890', holder: 'UPTD Museum Bali', color: '#003087' },
+  bni: { name: 'BNI', number: '9876543210', holder: 'UPTD Museum Bali', color: '#F26522' },
+  bri: { name: 'BRI', number: '0987654321', holder: 'UPTD Museum Bali', color: '#00529C' },
+  mandiri: { name: 'Mandiri', number: '1357924680', holder: 'UPTD Museum Bali', color: '#003D7A' }
+};
+
+const ewalletInfo = {
+  gopay: { name: 'GoPay', number: '0811-2222-3333', color: '#00AED6', icon: '💚' },
+  ovo: { name: 'OVO', number: '0822-3333-4444', color: '#4C3494', icon: '💜' },
+  dana: { name: 'DANA', number: '0833-4444-5555', color: '#118EEA', icon: '💙' }
+};
+
+// ─── HELPERS ───
+function formatRp(n) {
+  return 'Rp ' + n.toLocaleString('id-ID');
+}
+
+function getTotal() {
+  return Object.keys(qty).reduce((s, k) => s + qty[k] * prices[k], 0);
+}
+
+function updateSummary() {
+  const lines = Object.keys(qty).filter(k => qty[k] > 0)
+    .map(k => `<div class="summary-row"><span>${labels[k]} x${qty[k]}</span><span>${formatRp(qty[k] * prices[k])}</span></div>`)
+    .join('');
+  document.getElementById('summaryLines').innerHTML = lines || '<div style="font-size:13px; color:var(--text-muted);">Belum ada tiket dipilih</div>';
+  const total = getTotal();
+  document.getElementById('totalAmount').textContent = formatRp(total);
+  document.getElementById('step2Total').textContent = formatRp(total);
+  document.getElementById('qrisAmount').textContent = formatRp(total);
+}
+
+function changeQty(type, delta) {
+  qty[type] = Math.max(0, qty[type] + delta);
+  document.getElementById('qty_' + type).textContent = qty[type];
+  updateSummary();
+}
+
+// ─── MODAL ───
+function openModal(preset) {
+  if (preset) {
+    qty = { wni_dewasa: 0, wni_anak: 0, wna_dewasa: 0, wna_anak: 0 };
+    qty[preset] = 1;
+    Object.keys(qty).forEach(k => document.getElementById('qty_' + k).textContent = qty[k]);
+  }
+  updateSummary();
+  const today = new Date().toISOString().split('T')[0];
+  document.getElementById('visitDate').value = today;
+  document.getElementById('visitDate').min = today;
+  showStep(1);
+  document.getElementById('modalOverlay').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+  document.getElementById('modalOverlay').classList.remove('active');
+  document.body.style.overflow = '';
+}
+
+function handleOverlayClick(e) {
+  if (e.target === document.getElementById('modalOverlay')) closeModal();
+}
+
+function showStep(n) {
+  [1,2,3,4].forEach(i => {
+    document.getElementById('modalStep' + i).classList.toggle('hidden', i !== n);
+    const ind = document.getElementById('step' + i + 'ind');
+    ind.classList.remove('active', 'done');
+    if (i < n) ind.classList.add('done');
+    if (i === n) ind.classList.add('active');
+  });
+  // Show/hide step 4 done state
+  const s4 = document.getElementById('step4ind');
+  if (n === 4) { s4.classList.remove('active'); s4.classList.add('done'); }
+}
+
+function goStep2() {
+  const total = getTotal();
+  const date = document.getElementById('visitDate').value;
+  if (total === 0 || !date) {
+    document.getElementById('step1Error').style.display = 'block';
+    return;
+  }
+  document.getElementById('step1Error').style.display = 'none';
+  showStep(2);
+}
+
+function goStep1Back() { showStep(1); }
+
+function goStep2Back() {
+  backToMethodList();
+  showStep(2);
+}
+
+function goStep3() {
+  const name = document.getElementById('fullName').value.trim();
+  const phone = document.getElementById('phone').value.trim();
+  if (!name || !phone) {
+    document.getElementById('step2Error').style.display = 'block';
+    return;
+  }
+  document.getElementById('step2Error').style.display = 'none';
+  showStep(3);
+  backToMethodList();
+}
+
+// ─── PAYMENT ───
+function backToMethodList() {
+  document.getElementById('payMethodList').style.display = 'block';
+  document.getElementById('payQris').classList.remove('active');
+  document.getElementById('payTransfer').classList.remove('active');
+  document.getElementById('payEwallet').classList.remove('active');
+  document.getElementById('backToStep2Btn').style.display = 'block';
+}
+
+function selectPayMethod(method) {
+  document.getElementById('payMethodList').style.display = 'none';
+  document.getElementById('backToStep2Btn').style.display = 'none';
+
+  if (method === 'qris') {
+    document.getElementById('payQris').classList.add('active');
+  } else if (bankInfo[method]) {
+    const b = bankInfo[method];
+    const total = getTotal();
+    document.getElementById('bankDetails').innerHTML = `
+      <div class="bank-account-card" style="background: ${b.color};">
+        <div class="bank-name">${b.name}</div>
+        <div class="bank-number">
+          ${b.number}
+          <button class="copy-btn" onclick="copyText('${b.number}', this)">Salin</button>
+        </div>
+        <div class="bank-holder">A/N: ${b.holder}</div>
+      </div>
+      <div class="transfer-amount">
+        <div><div class="lbl">Jumlah Transfer</div><div class="amt">${formatRp(total)}</div></div>
+        <button class="copy-btn" style="padding:8px 14px; border:1px solid var(--gold); color:var(--gold); background:transparent; border-radius:8px; cursor:pointer; font-family:'DM Sans',sans-serif;" onclick="copyText('${total}', this)">Salin</button>
+      </div>
+      <div class="transfer-note">
+        ⚠️ Transfer tepat sesuai nominal di atas agar verifikasi otomatis. Simpan bukti transfer Anda. Pembayaran akan dikonfirmasi dalam 5-10 menit.
+      </div>
+    `;
+    document.getElementById('payTransfer').classList.add('active');
+  } else if (ewalletInfo[method]) {
+    const e = ewalletInfo[method];
+    const total = getTotal();
+    document.getElementById('ewalletDetails').innerHTML = `
+      <div style="background:var(--cream); border-radius:14px; padding:20px; text-align:center; margin-bottom:12px;">
+        <div style="font-size:48px; margin-bottom:8px;">${e.icon}</div>
+        <div style="font-size:20px; font-weight:700; color:${e.color}; margin-bottom:4px;">${e.name}</div>
+        <div style="font-size:13px; color:var(--text-muted); margin-bottom:16px;">Nomor ${e.name}</div>
+        <div style="font-size:28px; font-weight:700; font-family:'Playfair Display',serif; letter-spacing:2px; color:var(--text); display:flex; align-items:center; justify-content:center; gap:12px;">
+          ${e.number}
+          <button class="copy-btn" style="padding:6px 12px; border:1px solid var(--gold); color:var(--gold); background:transparent; border-radius:8px; cursor:pointer; font-size:12px; font-family:'DM Sans',sans-serif;" onclick="copyText('${e.number.replace(/-/g,'')}', this)">Salin</button>
+        </div>
+      </div>
+      <div class="transfer-amount">
+        <div><div class="lbl">Jumlah Pembayaran</div><div class="amt">${formatRp(total)}</div></div>
+        <button class="copy-btn" style="padding:8px 14px; border:1px solid var(--gold); color:var(--gold); background:transparent; border-radius:8px; cursor:pointer; font-family:'DM Sans',sans-serif;" onclick="copyText('${total}', this)">Salin</button>
+      </div>
+      <div class="transfer-note">
+        📲 Buka aplikasi ${e.name} → Kirim Uang → Masukkan nomor di atas → Masukkan nominal → Konfirmasi. Screenshot bukti pembayaran Anda.
+      </div>
+    `;
+    document.getElementById('payEwallet').classList.add('active');
+  }
+}
+
+function copyText(text, btn) {
+  navigator.clipboard.writeText(text).then(() => {
+    const orig = btn.textContent;
+    btn.textContent = '✓ Disalin!';
+    btn.style.background = '#4CAF50';
+    btn.style.color = 'white';
+    btn.style.borderColor = '#4CAF50';
+    setTimeout(() => { btn.textContent = orig; btn.style.background = ''; btn.style.color = ''; btn.style.borderColor = ''; }, 2000);
+  });
+}
+
+function confirmPayment() {
+  const name = document.getElementById('fullName').value;
+  const phone = document.getElementById('phone').value;
+  const email = document.getElementById('email').value;
+  const date = document.getElementById('visitDate').value;
+  const total = getTotal();
+
+  const ticketLines = Object.keys(qty).filter(k => qty[k] > 0)
+    .map(k => `<div class="summary-row"><span>${labels[k]} x${qty[k]}</span><span>${formatRp(qty[k] * prices[k])}</span></div>`)
+    .join('');
+
+  const bookingCode = 'MB' + Date.now().toString().slice(-6);
+  const formattedDate = new Date(date).toLocaleDateString('id-ID', {weekday:'long', year:'numeric', month:'long', day:'numeric'});
+
+  // Kirim via WhatsApp jika ada nomor HP
+  if (phone) {
+    const waNumber = phone.replace(/[^0-9]/g, '').replace(/^0/, '62');
+    const waMessage = encodeURIComponent(
+      `🏛️ *KONFIRMASI TIKET MUSEUM BALI*\n\n` +
+      `Halo ${name}, pemesanan tiket Anda berhasil!\n\n` +
+      `📋 Kode Booking: *${bookingCode}*\n` +
+      `📅 Tanggal Kunjungan: ${formattedDate}\n` +
+      `🎟 Tiket:\n` +
+      Object.keys(qty).filter(k => qty[k] > 0)
+        .map(k => `   • ${labels[k]} x${qty[k]} = ${formatRp(qty[k] * prices[k])}`)
+        .join('\n') + '\n' +
+      `💰 Total Dibayar: *${formatRp(total)}*\n\n` +
+      `📌 Tunjukkan kode booking ini kepada petugas museum saat tiba.\n\n` +
+      `Terima kasih telah mengunjungi Museum Bali! 🙏`
+    );
+    window.open(`https://wa.me/${waNumber}?text=${waMessage}`, '_blank');
+  }
+
+  // Kirim via Email jika ada alamat email
+  if (email) {
+    const subject = encodeURIComponent(`[Museum Bali] Konfirmasi Tiket - ${bookingCode}`);
+    const body = encodeURIComponent(
+      `Halo ${name},\n\n` +
+      `Terima kasih! Pemesanan tiket Museum Bali Anda telah berhasil.\n\n` +
+      `=== DETAIL TIKET ===\n` +
+      `Kode Booking : ${bookingCode}\n` +
+      `Tanggal      : ${formattedDate}\n` +
+      `Pemesan      : ${name}\n` +
+      `No. HP       : ${phone}\n\n` +
+      `=== RINCIAN TIKET ===\n` +
+      Object.keys(qty).filter(k => qty[k] > 0)
+        .map(k => `${labels[k]} x${qty[k]} = ${formatRp(qty[k] * prices[k])}`)
+        .join('\n') + '\n' +
+      `\nTotal Pembayaran: ${formatRp(total)}\n\n` +
+      `Tunjukkan kode booking ini kepada petugas museum saat tiba.\n\n` +
+      `Sampai jumpa di Museum Bali!\n` +
+      `Jl. Mayor Wisnu No.1, Denpasar Timur, Bali\n` +
+      `Tel: (0361) 222680`
+    );
+    window.open(`mailto:${email}?subject=${subject}&body=${body}`, '_blank');
+  }
+
+  document.getElementById('orderConfirmation').innerHTML = `
+    <div class="summary-row"><span style="color:var(--text-muted);">Kode Booking</span><span style="font-weight:700; color:var(--gold);">${bookingCode}</span></div>
+    <div class="summary-row"><span style="color:var(--text-muted);">Nama</span><span>${name}</span></div>
+    <div class="summary-row"><span style="color:var(--text-muted);">Tanggal Kunjungan</span><span>${formattedDate}</span></div>
+    ${ticketLines}
+    <div class="summary-row" style="border-top:1px solid rgba(201,150,58,0.3); margin-top:8px; padding-top:8px; font-weight:700;">
+      <span>Total</span><span style="color:var(--gold);">${formatRp(total)}</span>
+    </div>
+    <div style="margin-top:14px; padding:12px 14px; border-radius:10px; font-size:13px; line-height:1.7;
+      ${phone && email ? 'background:#E8F5E9; color:#2E7D32;' : 'background:#E3F2FD; color:#1565C0;'}">
+      ${phone && email
+        ? `✅ Konfirmasi dikirim ke WhatsApp <strong>${phone}</strong> dan email <strong>${email}</strong>.`
+        : phone
+          ? `✅ Konfirmasi dikirim ke WhatsApp <strong>${phone}</strong>.`
+          : email
+            ? `✅ Konfirmasi dikirim ke email <strong>${email}</strong>.`
+            : `📌 Simpan kode booking Anda.`
+      }
+    </div>
+  `;
+
+  showStep(4);
+  const s4 = document.getElementById('step4ind');
+  s4.classList.remove('active');
+  s4.classList.add('done');
+}
+
+
+function printTicket() {
+  window.print();
+}
+
+// ─── FAQ ───
+const faqs = [
+  { q: 'Apakah perlu mendaftar atau login untuk membeli tiket?', a: 'Tidak perlu! Pembelian tiket Museum Bali sepenuhnya bisa dilakukan tanpa login. Cukup pilih tiket, isi data pemesan, dan bayar.' },
+  { q: 'Metode pembayaran apa saja yang tersedia?', a: 'Kami menerima berbagai metode: QRIS (berlaku untuk semua e-wallet & m-banking), Transfer Bank (BCA, BNI, BRI, Mandiri), serta dompet digital GoPay, OVO, dan DANA.' },
+  { q: 'Berapa lama proses konfirmasi tiket setelah bayar?', a: 'Untuk QRIS dan dompet digital, konfirmasi instan. Untuk transfer bank, konfirmasi dilakukan dalam 5–15 menit pada jam kerja. E-tiket dikirimkan via WhatsApp/email.' },
+  { q: 'Apakah tiket bisa dibatalkan atau direfund?', a: 'Tiket yang sudah dibeli tidak bisa dibatalkan, namun bisa dipindahkan ke tanggal lain maksimal 3×24 jam sebelum kunjungan. Hubungi kami via WhatsApp untuk perubahan jadwal.' },
+  { q: 'Apakah ada diskon untuk kunjungan grup atau sekolah?', a: 'Ya! Untuk grup ≥20 orang mendapat diskon 10%, dan rombongan sekolah/pelajar mendapat harga khusus Rp 5.000–10.000/orang. Hubungi kami untuk reservasi grup.' },
+  { q: 'Bolehkah membawa kamera atau tripod ke dalam museum?', a: 'Kamera foto/HP diperbolehkan untuk keperluan pribadi. Untuk foto pre-wedding, komersial, atau penggunaan tripod, diperlukan izin khusus dengan biaya tambahan.' },
+  { q: 'Apakah tersedia pemandu wisata berbahasa Inggris?', a: 'Ya, tersedia pemandu wisata berbahasa Indonesia dan Inggris. Untuk WNA dewasa, panduan wisata sudah termasuk dalam harga tiket. Pemandu bisa dipesan saat reservasi.' },
+];
+
+function renderFAQ() {
+  const container = document.getElementById('faqList');
+  container.innerHTML = faqs.map((f, i) => `
+    <div style="border:1px solid var(--border); border-radius:12px; margin-bottom:10px; overflow:hidden;">
+      <button onclick="toggleFaq(${i})" style="width:100%; display:flex; justify-content:space-between; align-items:center; padding:16px 20px; background:var(--white); border:none; cursor:pointer; font-family:'DM Sans',sans-serif; text-align:left; gap:12px;">
+        <span style="font-size:15px; font-weight:600; color:var(--text);">${f.q}</span>
+        <span id="faq-arrow-${i}" style="font-size:18px; color:var(--gold); flex-shrink:0; transition:transform 0.2s;">+</span>
+      </button>
+      <div id="faq-body-${i}" style="display:none; padding:0 20px 16px; font-size:14px; color:var(--text-muted); line-height:1.7; background:var(--cream);">${f.a}</div>
+    </div>
+  `).join('');
+}
+
+function toggleFaq(i) {
+  const body = document.getElementById('faq-body-' + i);
+  const arrow = document.getElementById('faq-arrow-' + i);
+  const open = body.style.display !== 'none';
+  body.style.display = open ? 'none' : 'block';
+  arrow.textContent = open ? '+' : '−';
+  arrow.style.transform = open ? 'rotate(0deg)' : 'rotate(0deg)';
+}
+
+// ─── BOOKING CHECKER ───
+function checkBooking() {
+  const code = document.getElementById('bookingCodeInput').value.trim().toUpperCase();
+  const phone = document.getElementById('bookingPhoneInput').value.trim();
+  const result = document.getElementById('bookingResult');
+
+  if (!code || !phone) {
+    result.style.display = 'block';
+    result.innerHTML = '<div style="background:#FFEBEE; border-radius:10px; padding:12px 16px; font-size:13px; color:#c62828;">⚠️ Masukkan kode booking dan nomor HP pemesan.</div>';
+    return;
+  }
+
+  // Simulate check (in real app: API call)
+  if (code.startsWith('MB') && code.length >= 8 && phone.length >= 10) {
+    result.style.display = 'block';
+    result.innerHTML = `
+      <div style="background:var(--gold-pale); border:1px solid rgba(201,150,58,0.3); border-radius:12px; padding:16px;">
+        <div style="display:flex; align-items:center; gap:8px; margin-bottom:12px;">
+          <span style="font-size:20px;">🎟</span>
+          <span style="font-weight:700; color:var(--gold); font-size:15px;">Tiket Ditemukan</span>
+          <span style="margin-left:auto; background:#E8F5E9; color:#2E7D32; font-size:11px; font-weight:700; padding:3px 10px; border-radius:20px;">VALID</span>
+        </div>
+        <div style="font-size:13px; display:flex; flex-direction:column; gap:6px; color:var(--text);">
+          <div style="display:flex; justify-content:space-between;"><span style="color:var(--text-muted);">Kode Booking</span><strong>${code}</strong></div>
+          <div style="display:flex; justify-content:space-between;"><span style="color:var(--text-muted);">Status</span><strong style="color:#2E7D32;">Terkonfirmasi ✓</strong></div>
+          <div style="display:flex; justify-content:space-between;"><span style="color:var(--text-muted);">Berlaku</span><strong>Sesuai tanggal pemesanan</strong></div>
+        </div>
+        <div style="margin-top:12px; padding-top:10px; border-top:1px solid rgba(201,150,58,0.3); font-size:12px; color:var(--text-muted);">
+          📌 Tunjukkan kode ini kepada petugas museum saat tiba.
+        </div>
+      </div>`;
+  } else {
+    result.style.display = 'block';
+    result.innerHTML = '<div style="background:#FFEBEE; border-radius:10px; padding:12px 16px; font-size:13px; color:#c62828; line-height:1.6;">❌ Kode booking tidak ditemukan. Pastikan kode booking dan nomor HP sesuai dengan data pemesanan Anda.</div>';
+  }
+}
+
+// ─── CONTACT FORM ───
+function sendContact() {
+  const name = document.getElementById('contactName').value.trim();
+  const contact = document.getElementById('contactContact').value.trim();
+  const msg = document.getElementById('contactMessage').value.trim();
+  const errEl = document.getElementById('contactError');
+  const okEl = document.getElementById('contactSuccess');
+
+  errEl.style.display = 'none';
+  okEl.style.display = 'none';
+
+  if (!name || !contact || !msg) {
+    errEl.style.display = 'block';
+    return;
+  }
+
+  // Simulate send
+  okEl.style.display = 'block';
+  document.getElementById('contactName').value = '';
+  document.getElementById('contactContact').value = '';
+  document.getElementById('contactSubject').value = '';
+  document.getElementById('contactMessage').value = '';
+  setTimeout(() => { okEl.style.display = 'none'; }, 5000);
+}
+
+// ─── NAV ACTIVE STATE ───
+const sections = document.querySelectorAll('section[id], #kontak');
+const navLinks = document.querySelectorAll('.nav-links a');
+
+const navObserver = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      navLinks.forEach(a => {
+        a.style.color = a.getAttribute('href') === '#' + e.target.id ? 'var(--gold)' : '';
+      });
+    }
+  });
+}, { threshold: 0.3 });
+
+document.querySelectorAll('section[id]').forEach(s => navObserver.observe(s));
+
+// ─── SCROLL ANIMATION ───
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.scroll-fade').forEach(el => observer.observe(el));
+
+// ─── KONTAK NAV LINK UPDATE ───
+document.querySelectorAll('.nav-links a[href="#tiket"]').forEach(a => {
+  // keep as is, tiket section exists
+});
+
+// ─── INIT ───
+updateSummary();
+renderFAQ();
+</script>
+</body>
+</html>
